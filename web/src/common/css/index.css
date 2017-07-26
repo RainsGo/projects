@@ -1,0 +1,68 @@
+/* Style for our header texts
+	* --------------------------------------- */
+h1 {
+    font-size: 5em;
+    font-family: arial, helvetica;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centered texts in each section
+* --------------------------------------- */
+.section {
+    position: absolute;
+    text-align: center;
+}
+
+/* Backgrounds will cover all the section
+* --------------------------------------- */
+#section0,
+#section1,
+#section2,
+#section3 {
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Defining each sectino background and styles
+* --------------------------------------- */
+#section1 {
+    background-image: url(../images/bg1.jpg);
+}
+
+#section2 {
+    background-image: url(../images/bg2.jpg);
+}
+
+#section1 h1 {
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+
+#section3 {
+    background-image: url(../images/bg3.jpg);
+    padding: 6% 0 0 0;
+}
+
+#section4 {
+    background-image: url(../images/bg4.jpg);
+    padding: 6% 0 0 0;
+}
+
+#section4 h1 {
+    color: #000;
+}
+
+/*Adding background for the slides
+* --------------------------------------- */
+#slide1 {
+    background-image: url(../images/bg2.jpg);
+    padding: 6% 0 0 0;
+}
+
+#slide2 {
+    background-image: url(../images/bg5.jpg);
+    padding: 6% 0 0 0;
+}

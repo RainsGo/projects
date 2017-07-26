@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rain.projects.server.user.dao.UserDao">
+
+    <resultMap id="AllColumnMap" type="com.rain.projects.server.user.model.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+    <parameterMap id="User" type="com.rain.projects.server.user.model.User"/>
+
+    <sql id="all_column">
+        'id',
+        'username',
+        'password',
+        'age'
+    </sql>
+
+    <select id="findById" resultMap="AllColumnMap" parameterType="java.lang.Long">
+        select
+          <include refid="all_column" />
+        from
+          User
+        where
+          id = #{id}
+    </select>
+
+    <select id="findByName" resultMap="AllColumnMap" parameterType="java.lang.String">
+        select
+          <include refid="all_column" />
+        from
+          User
+        where
+          username = #{username}
+    </select>
+
+    <select id="findUserByNameAndPassword" resultMap="AllColumnMap" parameterType="java.lang.String, java.lang.String">
+        select
+          <include refid="all_column" />
+        from
+          User
+        where
+          username = #{username}, password = #{password}
+    </select>
+
+    <select id="findAllUser" resultMap="AllColumnMap" >
+        select
+          <include refid="all_column" />
+        from
+          user
+    </select>
+
+    <insert id="saveUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+          user('id','username','password','age')
+        VALUES
+          (#{user.id},#{user.username},#{user.password},#{user.age})
+    </insert>
+
+    <update id="updateUser" parameterMap="User">
+        update
+          user
+        set
+            <if test="id!=null">
+                id = #{id},
+            </if>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+        where
+          id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Long">
+        delete from
+          user
+        where
+          id = #{id}
+    </delete>
+</mapper>
