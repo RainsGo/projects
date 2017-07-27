@@ -11,12 +11,12 @@ import java.util.List;
 @Mapper
 public interface LoginLogDao {
 
-    @Select("SELECT * FROM t_loginlog")
+    @Select("SELECT * FROM t_loginlogs")
     List<LoginLog> findAllLogs();
 
-    @Select("SELECT * FROME t_user WHERE user_id=#(userId)")
+    @Select("SELECT * FROME t_loginlogs WHERE user_id=#(userId)")
     LoginLog findByUserId(@Param("userId") Long userId);
 
-    @Insert("")
+    @Insert("INSERT INTO t_loginlogs(user_d, login_ip, login_date} VALUES(#{userId}, #{loginIp}, #{loginDate}))")
     Long addLog(LoginLog log);
 }

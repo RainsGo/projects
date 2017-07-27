@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/api/auth")
 public class AuthRestApi {
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -22,7 +23,7 @@ public class AuthRestApi {
     @Autowired
     private AuthService authService;
 
-    @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException{
         final String token = authService.login(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -31,7 +32,7 @@ public class AuthRestApi {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
-    @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
+    @RequestMapping(value = "/refresh", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(
             HttpServletRequest request) throws AuthenticationException{
         String token = request.getHeader(tokenHeader);
@@ -43,7 +44,7 @@ public class AuthRestApi {
         }
     }
 
-    @RequestMapping(value = "${jwt.route.authentication.register}", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User register(@RequestBody User addedUser) throws AuthenticationException {
         return authService.register(addedUser);
     }

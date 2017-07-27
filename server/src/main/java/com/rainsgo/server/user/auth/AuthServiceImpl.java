@@ -1,6 +1,5 @@
 package com.rainsgo.server.user.auth;
 
-import com.rainsgo.server.user.dao.UserDao;
 import com.rainsgo.server.user.model.User;
 import com.rainsgo.server.user.security.JwtTokenUtil;
 import com.rainsgo.server.user.security.JwtUserDetails;
@@ -17,8 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-
-import static java.util.Arrays.asList;
 
 @Service
 public class AuthServiceImpl implements AuthService{
@@ -45,7 +42,7 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public User register(User userToAdd) {
         final String username = userToAdd.getUsername();
-        if(userService.findUserByName(username)!=null) {
+        if(userService.findByName(username)!=null) {
             return null;
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

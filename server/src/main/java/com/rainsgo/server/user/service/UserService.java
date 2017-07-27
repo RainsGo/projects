@@ -12,17 +12,17 @@ public interface UserService {
     /**
      * 获取用户列表
      */
-    List<User> findAllUser();
+    List<User> findAll();
 
     /**
      * 根据用户ID获取User
      */
-    User findUserById(String id);
+    User findById(String id);
 
     /**
      * 根据用户名获取User
      */
-    User findUserByName(String name);
+    User findByName(String name);
 
     /**
      * 新增User

@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/user")
 public class UserRestApi {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/findall", method = RequestMethod.GET)
     public List<User> findAllUser(){
-        return userService.findAllUser();
+        return userService.findAll();
     }
 
-    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET)
     public User findOneUser(@PathVariable("id") String id){
-        return userService.findUserById(id);
+        return userService.findById(id);
     }
 }

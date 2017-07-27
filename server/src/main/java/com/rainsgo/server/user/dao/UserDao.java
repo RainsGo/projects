@@ -21,9 +21,9 @@ public interface UserDao {
 
     @Select("SELECT * FROM t_users WHERE username=#{username}")
     @ResultType(value = User.class)
-    User findByUsername(@Param("username") String username);
+    User findByName(@Param("username") String username);
 
-    @Insert("INSERT INTO t_users(username, password, age} VALUES(#{username}, #{password}, #{age}))")
+    @Insert("INSERT INTO t_users(username, password, age) VALUES(#{username}, #{password}, #{age})")
     @ResultType(value = User.class)
     User addUser(User user);
 
@@ -33,4 +33,5 @@ public interface UserDao {
 
     @Delete("DELETE FROME t_users WHERE id=#{id}")
     Long deleteUser(String id);
+
 }

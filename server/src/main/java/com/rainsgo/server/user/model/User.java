@@ -44,7 +44,7 @@ public class User implements Serializable {
     /**
      * 用户角色
      */
-    private List<String> roles;
+    private List<Role> roles;
 
     public String getId() {
         return id;
@@ -94,11 +94,11 @@ public class User implements Serializable {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

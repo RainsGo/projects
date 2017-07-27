@@ -24,7 +24,6 @@ spring:
   jackson:
       serialization:
         indent_output: true
-
   datasource:
       driver-class-username: com.mysql.jdbc.Driver
       url: jdbc:mysql://172.17.0.2:3306/sampledb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
@@ -47,7 +46,7 @@ mybatis:
 jwt:
   header: Authorization
   secret: mySecret
-  tokenHead: "Bearer"
+  tokenHead: "Rainsgo"
   access_expiration: 604800
   refresh_expiration: 604800
   route:
