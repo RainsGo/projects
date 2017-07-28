@@ -17,7 +17,7 @@ import org.springframework.web.WebApplicationInitializer;
  * Created by rain on 17-7-13.
  */
 @SpringBootApplication
-@MapperScan({"com.rainsgo.server.user.dao", "com.rainsgo.server.log.dao"})
+//@MapperScan({"com.rainsgo.server.user.dao", "com.rainsgo.server.log.dao"})
 public class MainApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
 
     @Bean

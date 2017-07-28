@@ -1,8 +1,10 @@
-package com.rainsgo.server.user.auth;
+package com.rainsgo.server.auth.api;
 
+import com.rainsgo.server.auth.service.AuthService;
 import com.rainsgo.server.user.model.User;
-import com.rainsgo.server.user.security.JwtAuthenticationRequest;
-import com.rainsgo.server.user.security.JwtAuthenticationResponse;
+import com.rainsgo.server.auth.jwtsecurity.JwtAuthenticationRequest;
+import com.rainsgo.server.auth.jwtsecurity.JwtAuthenticationResponse;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Log4j2
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestApi {
@@ -26,6 +29,7 @@ public class AuthRestApi {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(
             @RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException{
+        log.debug("login: ", authenticationRequest);
         final String token = authService.login(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         // Return the token
@@ -45,7 +49,8 @@ public class AuthRestApi {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User register(@RequestBody User addedUser) throws AuthenticationException {
-        return authService.register(addedUser);
+    public boolean register(@RequestBody User user) throws AuthenticationException {
+        log.debug("register: ", user);
+        return authService.register(user);
     }
 }

@@ -1,4 +1,4 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.jwtsecurity;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

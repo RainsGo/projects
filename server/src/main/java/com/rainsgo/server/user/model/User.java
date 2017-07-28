@@ -3,6 +3,7 @@ package com.rainsgo.server.user.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -39,12 +40,7 @@ public class User implements Serializable {
     /**
      * 用户密码修改时间
      */
-    private Date lastPasswordResetDate;
-
-    /**
-     * 用户角色
-     */
-    private List<Role> roles;
+    private Timestamp lastPasswordResetDate;
 
     public String getId() {
         return id;
@@ -86,19 +82,11 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    public Date getLastPasswordResetDate() {
+    public Timestamp getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
 
-    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+    public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 }

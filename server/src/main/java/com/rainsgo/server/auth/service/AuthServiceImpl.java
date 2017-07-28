@@ -1,8 +1,8 @@
-package com.rainsgo.server.user.auth;
+package com.rainsgo.server.auth.service;
 
+import com.rainsgo.server.auth.jwtsecurity.JwtUserDetails;
 import com.rainsgo.server.user.model.User;
-import com.rainsgo.server.user.security.JwtTokenUtil;
-import com.rainsgo.server.user.security.JwtUserDetails;
+import com.rainsgo.server.auth.jwtsecurity.JwtTokenUtil;
 import com.rainsgo.server.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,10 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
-public class AuthServiceImpl implements AuthService{
+public class AuthServiceImpl implements AuthService {
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private JwtTokenUtil jwtTokenUtil;
@@ -40,16 +38,14 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public User register(User userToAdd) {
+    public boolean register(User userToAdd) {
         final String username = userToAdd.getUsername();
         if(userService.findByName(username)!=null) {
-            return null;
+            return false;
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = userToAdd.getPassword();
         userToAdd.setPassword(encoder.encode(rawPassword));
-        userToAdd.setLastPasswordResetDate(new Date());
-        userToAdd.setRoles(userToAdd.getRoles());
         return userService.addUser(userToAdd);
     }
 

@@ -1,5 +1,6 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.jwtsecurity;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * JWT认证令牌过滤器
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
+@Log4j2
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
@@ -52,7 +54,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
-        logger.info("checking authentication " + username);
+        log.info("authHeader: " + authHeader);
+        log.info("authToken: " + authToken);
+        log.info("username: " + username);
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             // 如果我们足够相信token中的数据，也就是我们足够相信签名token的secret的机制足够好
@@ -67,7 +71,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(
                         request));
-                logger.info("authenticated user " + username + ", setting security context");
+                log.info("authenticated user " + username + ", setting auth context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

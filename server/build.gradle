@@ -74,7 +74,7 @@ dependencies {
     compile ("org.projectlombok:lombok:+")
 
     //-- 安全框架 Spring Security
-    compile ("org.springframework.boot:spring-boot-starter-security:+")
+    compile ("org.springframework.boot:spring-boot-starter-auth:+")
 
     //-- Token鉴权 JWT
     compile("io.jsonwebtoken:jjwt:+")

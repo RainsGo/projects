@@ -1,4 +1,4 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.jwtsecurity;
 
 import com.rainsgo.server.user.model.Role;
 import com.rainsgo.server.user.model.User;
@@ -31,7 +31,13 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-            return JwtUserFactory.create(user);
+            return new JwtUserDetails(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getPassword(),
+                    getGrantedAuth(user),
+                    user.getLastPasswordResetDate()
+            );
         }
     }
     /**
@@ -44,7 +50,9 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         try {
             List<Role> roleList = roleService.findByUserId(user.getId());
             for(Role r : roleList){
-                authSet.add(new SimpleGrantedAuthority(r.getId()));
+                if(r.getEnable()){
+                    authSet.add(new SimpleGrantedAuthority(r.getName()));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

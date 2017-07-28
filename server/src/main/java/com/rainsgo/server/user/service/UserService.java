@@ -27,15 +27,15 @@ public interface UserService {
     /**
      * 新增User
      */
-    User addUser(User user);
+    boolean addUser(User user);
 
     /**
      * 更新User
      */
-    User updateUser(User user);
+    boolean updateUser(User user);
 
     /**
      * 删除User
      */
-    Long deleteUser(String id);
+    boolean deleteUser(String id);
 }

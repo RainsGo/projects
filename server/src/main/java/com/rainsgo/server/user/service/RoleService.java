@@ -1,5 +1,6 @@
 package com.rainsgo.server.user.service;
 
+import com.rainsgo.server.user.model.Permission;
 import com.rainsgo.server.user.model.Role;
 
 import java.util.List;
@@ -12,11 +13,6 @@ public interface RoleService {
     List<Role> findAll();
 
     /**
-     * 根据角色ID获取Role
-     */
-    Role findById(String id);
-
-    /**
      * 根据角色名获取Role
      */
     Role findByName(String name);
@@ -24,19 +20,20 @@ public interface RoleService {
     /**
      * 新增Role
      */
-    Role addRole(Role role);
+    boolean addRole(Role role);
 
     /**
      * 更新Role
      */
-    Role updateRole(Role role);
+    boolean updateRole(Role role);
 
     /**
      * 删除Role
      */
-    Long deleteRole(String id);
+    boolean deleteRole(String name);
 
     /**
-     * 删除Role
+     * 根据UserId获取角色列表
      */
+    List<Role> findByUserId(String userId);
 }

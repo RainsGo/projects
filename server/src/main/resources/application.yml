@@ -1,7 +1,7 @@
 
 #配置日志
-logging:
-  config:classpath:log4j2.yml
+#logging:
+#  config:classpath:log4j2-spring.yml
 
 # 配置 Server
 server:

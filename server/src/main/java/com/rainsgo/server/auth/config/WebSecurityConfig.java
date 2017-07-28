@@ -1,5 +1,7 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.config;
 
+import com.rainsgo.server.auth.jwtsecurity.JwtAuthenticationEntryPoint;
+import com.rainsgo.server.auth.jwtsecurity.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -65,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         HttpMethod.GET,
                         "/",
+                        "/**",
                         "/*.html",
                         "/favicon.ico",
                         "/**/*.html",
@@ -72,7 +75,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 // 对于获取token的rest api要允许匿名访问
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST,
+                        "/api/auth/**"
+                ).permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
 

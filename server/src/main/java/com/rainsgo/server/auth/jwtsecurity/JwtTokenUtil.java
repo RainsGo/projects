@@ -1,4 +1,4 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.jwtsecurity;
 
 import com.rainsgo.server.utils.JsonUtils;
 import io.jsonwebtoken.Claims;

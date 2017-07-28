@@ -1,4 +1,4 @@
-package com.rainsgo.server.user.security;
+package com.rainsgo.server.auth.jwtsecurity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
