@@ -53,3 +53,7 @@ create table if not exists t_logs_auth (
     primary key (id),
     FOREIGN KEY (user_id) REFERENCES t_users(id) ON DELETE CASCADE ON UPDATE CASCADE
 )engine=InnoDB default charset=utf8;
+
+
+--insert into User (username, password, age) values ('test', '123456', '11');
+--insert into LoginLog(userId, loginIp, loginDate) values (1, '127.0.0.1', '2017-07-20')
