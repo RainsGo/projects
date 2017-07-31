@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloRestApi {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello(){
-        return "Hello World!";
+    public ApiResultBody hello(){
+        String str = "Hello World!";
+        return new ApiResultBody(str);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeRestApi {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home(){
-        return "Welcom to RainsGo web site!";
+    public ApiResultBody home(){
+        return new ApiResultBody("Welcom to RainsGo web site!");
     }
 }

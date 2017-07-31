@@ -1,5 +1,7 @@
 package com.rainsgo.server.auth.jwtsecurity;
 
+import com.rainsgo.server.api.ApiException;
+import com.rainsgo.server.auth.api.AuthException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

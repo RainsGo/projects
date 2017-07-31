@@ -74,13 +74,13 @@ dependencies {
     compile ("org.projectlombok:lombok:+")
 
     //-- 安全框架 Spring Security
-    compile ("org.springframework.boot:spring-boot-starter-auth:+")
+    compile ("org.springframework.boot:spring-boot-starter-security:+")
 
     //-- Token鉴权 JWT
     compile("io.jsonwebtoken:jjwt:+")
 
     //-- Spring Boot Test
-    testCompile ("org.springframework.boot:spring-boot-starter-test:+")
-
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile ("org.springframework.boot:spring-boot-starter-test:+")
+    testCompile ("org.springframework.security:spring-security-test:+")
 }
