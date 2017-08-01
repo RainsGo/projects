@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <navbar></navbar>
-        <div id="pages">
+        <Navbar></Navbar>
+        <div class="content">
             <keep-alive>
                 <transition name="fade" mode="out-in">
                     <router-view>
@@ -13,45 +13,65 @@
                 </transition>
             </keep-alive>
         </div>
+        <Footer></Footer>
+        <!--
         <div id="background">
-            <div class="section " id="section1">
-            </div>
-            <div class="section" id="section2"><h1>2 Page</h1></div>
-            <!--
-            <div class="section" id="section1">
-                <div class="slide" id="slide1"><h1>2 Page 1</h1></div>
-                <div class="slide" id="slide2"><h1>2 Page 2</h1></div>
-            </div>
-            -->
-            <div class="section" id="section3"><h1>3 Page</h1></div>
-            <div class="section" id="section4"><h1>4 Page</h1></div>
+        <div class="section " id="section1"><h1>2 Page</h1></div>
+        <div class="section" id="section2"><h1>2 Page</h1></div>
+        <div class="section" id="section1">
+            <div class="slide" id="slide1"><h1>2 Page 1</h1></div>
+            <div class="slide" id="slide2"><h1>2 Page 2</h1></div>
         </div>
+        <div class="section" id="section3"><h1>3 Page</h1></div>
+        <div class="section" id="section4"><h1>4 Page</h1></div>
+        </div>
+        -->
     </div>
 </template>
 
-<style type="text/css">
+<style scoped lang="less">
+    @animateTime: 0.5s;
+    /*
     @import "../common/css/index.css";
     @import "../common/css/jquery.fullPage.css";
+    */
+    html, body, #app {
+        transition: all @animateTime;
+        -moz-transition: all @animateTime;
+        -webkit-transition: all @animateTime;
+        -o-transition: all @animateTime;
+    }
 
-    #pages {
+    #app {
         position: absolute;
-        margin-top: 0px;
         height: 100%;
         width: 100%;
-        z-index: 2;
+        margin: 0;
+        color: white;
+    }
+
+    .content {
+        min-height: 100%; /* 等于footer的高度 */
+        min-width: 100%;
+        margin: 0px 0px -50px 0px;
+        padding-top: 80px;
+        background-image: url(common/images/bg1.jpg);
     }
 </style>
 
 <script type="text/ecmascript-6">
-    import 'common/js/jquery.fullPage'
+    //import 'common/js/jquery.fullPage'
     import Navbar from 'components/navbar/navbar-bootstrapvue.vue'
+    import Footer from 'components/footer/footer.vue'
 
     export default {
         name: 'app',
         components: {
-            Navbar
+            Navbar,
+            Footer
         },
-        mounted(){
+        mounted() {
+            /*
             this.$nextTick(function () {
                 window.Promise = window.Promise || require('es6-promise');
                 $('#background').fullpage({
@@ -61,6 +81,7 @@
                     css3: false
                 });
             })
+            */
         }
     }
 </script>

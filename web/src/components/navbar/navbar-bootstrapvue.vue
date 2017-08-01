@@ -18,7 +18,7 @@
         </b-nav>
 
         <b-nav class="r-navbar-right">
-            <b-nav-item to="/join">加入</b-nav-item>
+            <b-nav-item to="/register">加入</b-nav-item>
             <b-nav-item to="/login">登陆</b-nav-item>
         </b-nav>
 
@@ -73,9 +73,11 @@
         transform: translateY(-40px);
         opacity: 0;
     }
+
     .items-translate-enter-active, items-translate-leave-active {
         transition: margin-left @animateTime;
     }
+
     .items-translate-enter, .items-translate-leave-to {
         transform: translateX(-40px);
         opacity: 0;
@@ -156,11 +158,11 @@
         },
         components: {},
         methods: {
-            onMouseOver(event){
+            onMouseOver(event) {
                 //console.log("[navbar] onMouseOver: ", this.isOnMouse)
                 this.isMouseOver = true;
             },
-            onMouseOut(){
+            onMouseOut() {
                 //console.log("[navbar] onMouseOut: ", this.isOnMouse)
                 this.isMouseOver = false;
             },
@@ -175,8 +177,7 @@
                 }
             },
         },
-        computed: {
-        },
+        computed: {},
         beforeCreate() {
             //console.log('[navbar] beforeCreate')
         },
@@ -207,7 +208,7 @@
         deactivated() {
             //console.log('[navbar] deactivated')
         },
-        beforeDestroy()  {
+        beforeDestroy() {
             //console.log('[navbar] beforeDestroy')
         },
         destroyed() {

@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 // 引用模板
 import Home from 'components/home/home.vue'
-import Join from 'components/login/join.vue'
-import Login from 'components/login/login.vue'
+import Register from 'components/auth/register.vue'
+import Login from 'components/auth/login.vue'
 import Page1 from 'components/test/page1.vue'
 import Page2 from 'components/test/page2.vue'
 import Page3 from 'components/test/page3.vue'
@@ -20,38 +20,47 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
+            name: 'home',
             component: Home
         },
         {
-            path: '/join',
-            component: Join
+            path: '/register',
+            name: 'register',
+            component: Register
         },
         {
             path: '/login',
+            name: 'login',
             component: Login
         },
         {
             path: '/page1',
+            name: 'page1',
             component: Page1
         },
         {
             path: '/page2',
+            name: 'page2',
             component: Page2
         },
         {
             path: '/page3',
+            name: 'page3',
             component: Page3
         },
         {
             path: '/page4',
+            name: 'page4',
             component: Page4
         },
         {
             path: '/page5',
+            name: 'page5',
             component: Page5
         },
         {
             path: '/page6',
+            name: 'page6',
             component: Page6
         },
         {

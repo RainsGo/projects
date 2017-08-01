@@ -12,7 +12,7 @@ import iView from 'iview'
 Vue.use(iView)
 
 // 引用App主入口
-import App from 'components/App.vue'
+import App from '@/App.vue'
 
 // 引用路由配置文件
 import router from 'router/index.js'

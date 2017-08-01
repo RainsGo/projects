@@ -10,6 +10,5 @@
     .r-home {
         height: 1000px;
         text-align: center;
-        margin-top: 100px;
     }
 </style>
