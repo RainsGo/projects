@@ -11,6 +11,7 @@
             </b-link>
         </transition>
 
+
         <b-nav class="r-navbar-left">
             <b-nav-item>
                 <i class=" fa fa-search"></i>
@@ -24,7 +25,7 @@
 
         <b-nav is-nav class="r-navbar-items r-navbar-items-left"
                v-bind:class="{'r-navbar-items-left-move': !isPageHome}">
-            <b-nav-item to="/page1">Page1</b-nav-item>
+            <b-nav-item class="r-link" to="/page1">Page1</b-nav-item>
             <b-nav-item to="/page2">Page2</b-nav-item>
             <b-nav-item to="/page3">Page3</b-nav-item>
         </b-nav>
@@ -41,6 +42,10 @@
 <style scoped lang="less">
     @animateTime: 0.7s;
 
+    .r-link.a{
+        color: white !important;
+    }
+
     .r-navbar {
         top: 0;
         width: 100%;
@@ -50,6 +55,7 @@
         min-height: 50px;
         margin-bottom: 20px;
         position: fixed;
+        color: white;
         background: rgba(0, 0, 0, 0);
         transition: background @animateTime;
         -moz-transition: background @animateTime;
@@ -110,7 +116,7 @@
     .r-navbar-items {
         position: absolute;
         font-size: 14px;
-        color: black;
+        color: white;
         padding: 0;
         margin: 7px 0px 0px 0px;
         transition: margin-right @animateTime, margin-left @animateTime;
@@ -170,7 +176,7 @@
         watch: {
             $route: function () {
                 //console.log("[navbar] $route: ", this.$route)
-                if (this.$route.path === "/") {
+                if (this.$route.name === "home") {
                     this.isPageHome = true;
                 } else {
                     this.isPageHome = false;
