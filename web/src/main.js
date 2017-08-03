@@ -9,6 +9,8 @@ Vue.use(BootstrapVue)
 
 // 引用ui组件 iview
 import iView from 'iview'
+import 'iview/dist/styles/iview.css'
+import 'theme/iview-custom.less'
 Vue.use(iView)
 
 // 引用App主入口
@@ -23,9 +25,6 @@ import store from 'store/index.js'
 // 引入bootstrap样式
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// 引入iView样式
-import 'iview/dist/styles/iview.css'
 
 // 引入fonts
 import 'common/fonts/font-awesome/css/font-awesome.css'

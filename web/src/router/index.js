@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 import Home from 'components/home/home.vue'
 import Register from 'components/auth/register.vue'
 import Login from 'components/auth/login.vue'
+import Reset from 'components/auth/reset.vue'
 import Page1 from 'components/test/page1.vue'
 import Page2 from 'components/test/page2.vue'
 import Page3 from 'components/test/page3.vue'
@@ -32,6 +33,11 @@ export default new VueRouter({
             path: '/login',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/reset',
+            name: 'reset',
+            component: Reset
         },
         {
             path: '/page1',

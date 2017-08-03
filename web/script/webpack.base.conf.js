@@ -30,6 +30,7 @@ module.exports = {
             'components': resolve('src/components'),
             'router': resolve('src/router'),
             'store': resolve('src/store'),
+            'theme': resolve('src/theme'),
 
             // webpack 使用 jQuery，如果是自行下载的
             // 'jquery': path.resolve(__dirname, '../src/assets/libs/jquery/jquery.min'),

@@ -13,7 +13,7 @@
                 </transition>
             </keep-alive>
         </div>
-        <Footer></Footer>
+        <rFooter></rFooter>
         <!--
         <div id="background">
         <div class="section " id="section1"><h1>2 Page</h1></div>
@@ -62,15 +62,19 @@
 <script type="text/ecmascript-6">
     //import 'common/js/jquery.fullPage'
     import Navbar from 'components/navbar/navbar-bootstrapvue.vue'
-    import Footer from 'components/footer/footer.vue'
+    import rFooter from 'components/footer/footer.vue'
 
     export default {
         name: 'app',
         components: {
             Navbar,
-            Footer
+            rFooter
         },
         mounted() {
+            this.$Message.config({
+                top: 100,
+                duration: 2
+            });
             /*
             this.$nextTick(function () {
                 window.Promise = window.Promise || require('es6-promise');

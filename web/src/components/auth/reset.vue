@@ -1,38 +1,38 @@
 <template>
-    <div id="login" class="r-login">
-        <div id="login_frame">
-            <div id="login_content">
-                <h2 class="login_title">RainsGo</h2>
+    <div id="reset" class="r-reset">
+        <div id="reset_frame">
+            <div id="reset_content">
+                <h3 class="reset_title">重 置 密 码</h3>
                 <Form class="form" ref="formData" :model="formData" :rules="ruleData">
-                    <Form-item prop="username">
-                        <Input type="text" class="form_items" size="large" v-model="formData.username"
-                               placeholder="Username Or Email Or Phone Number">
+                    <Form-item prop="emailOfPhone" label="请输入邮箱或者手机号,以接收验证码">
+                        <Input type="text" class="form_items" size="large" v-model="formData.emailOfPhone"
+                               placeholder="Email Or Phone Number">
                         <i class="fa fa-user fa-size form_items_icon" slot="prepend"></i>
+                        <Button type="text" slot="append" :loading="sending" @click="toSend">
+                            <span v-if="!sending && !sended">发送验证码</span>
+                            <span v-else-if="sending && !sended">发送中</span>
+                            <span v-else>验证码已发送</span>
+                        </Button>
                         </Input>
                     </Form-item>
 
-                    <Form-item prop="password">
-                        <Input type="password" class="form_items" size="large" v-model="formData.password"
-                               placeholder="Password">
-                        <i class="fa fa-key fa-size form_items_icon" slot="prepend"></i>
+                    <Form-item prop="code">
+                        <Input type="code" :disabled="!sended" class="form_items" size="large" v-model="formData.code"
+                               placeholder="请输入验证码">
+                        <i class="fa fa-commenting fa-size form_items_icon" slot="prepend"></i>
                         </Input>
                     </Form-item>
 
-                    <div class="forget">
-                        <router-link to="/reset">
-                            <Button type="text">忘记密码?</Button>
-                        </router-link>
-                    </div>
                     <Form-item>
-                        <Button type="primary" size="large" class="form_items" @click="handleSubmit('formData')">登 录
+                        <Button type="primary" :disabled="!sended" size="large" class="form_items" @click="handleSubmit('formData')">确认验证码
                         </Button>
                     </Form-item>
                 </Form>
             </div>
-            <div class="login_bottom">
-                新来的?
-                <router-link to="/register">
-                    <Button type="text">来注册,加入我们吧!</Button>
+            <div class="reset_bottom">
+                想起来了?
+                <router-link to="/login">
+                    <Button type="text">那就去登录吧 -> GO</Button>
                 </router-link>
             </div>
         </div>
@@ -43,12 +43,12 @@
     @rgbBackgroudContent: rgba(245, 245, 245, 0.7);
     @rgbBackgroudBottom: rgba(245, 245, 245, 0.8);
 
-    .r-login {
+    .r-reset {
         height: 100%;
         width: 100%;
     }
 
-    #login_background {
+    #reset_background {
         height: 100%;
         width: 100%;
         margin: -100px 0px 0px 0px;
@@ -58,10 +58,10 @@
         position: absolute;
     }
 
-    #login_frame {
+    #reset_frame {
         position: absolute;
-        width: 360px;
-        margin-left: -180px;
+        width: 450px;
+        margin-left: -225px;
         left: 50%;
         top: 100px;
         color: black;
@@ -71,13 +71,13 @@
         margin-bottom: 40px;
     }
 
-    #login_content {
+    #reset_content {
         height: 100%;
         width: 100%;
         padding: 30px 20px 0px 20px;
     }
 
-    .login_bottom {
+    .reset_bottom {
         width: 100%;
         padding: 20px;
         text-align: center;
@@ -86,7 +86,7 @@
         border-radius: 0 0 3px 3px;
     }
 
-    .login_title {
+    .reset_title {
         width: 100%;
         text-align: center;
     }
@@ -117,33 +117,35 @@
         data() {
             const validateUsername = (rule, value, callback) => {
                 if (value === '') {
-                    return callback(new Error('登录名不能为空: [用户名] 或 [邮箱] 或 [手机号]'));
+                    return callback(new Error('请填写邮箱或者手机号,以便接收验证码'));
                 } else if (value.toString().length < 4) {
-                    callback(new Error('登录名至少4位'));
+                    callback(new Error('至少4位'));
                 } else {
                     callback();
                 }
             };
-            const validatePassword = (rule, value, callback) => {
+            const validateCode = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('请输入密码'));
-                } else if (value.toString().length < 6) {
-                    callback(new Error('密码至少6位'));
+                    callback(new Error('请输入验证码'));
+                } else if (value.toString().length != 6) {
+                    callback(new Error('验证码是6位的'));
                 } else {
                     callback();
                 }
             };
             return {
+                sending: false,
+                sended: false,
                 formData: {
-                    username: '',
-                    password: ''
+                    emailOfPhone: '',
+                    code: ''
                 },
                 ruleData: {
-                    username: [
+                    emailOfPhone: [
                         {validator: validateUsername, trigger: 'blur'}
                     ],
-                    password: [
-                        {validator: validatePassword, trigger: 'blur'}
+                    code: [
+                        {validator: validateCode, trigger: 'blur'}
                     ]
                 }
             }
@@ -157,6 +159,9 @@
                         this.$Message.error('表单验证失败!');
                     }
                 })
+            },
+            toSend() {
+                this.$Message.success('验证码已发送!');
             }
         }
     }
