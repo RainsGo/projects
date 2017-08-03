@@ -1,6 +1,6 @@
 <template>
     <div id="login" class="r-login">
-        <div id="login_frame">
+        <div id="login_frame" ref="abc">
             <div id="login_content">
                 <h2 class="login_title">RainsGo</h2>
                 <Form class="form" ref="formData" :model="formData" :rules="ruleData">
@@ -150,6 +150,7 @@
         },
         methods: {
             handleSubmit(name) {
+                console.log(this.$refs.abc.getBoundingClientRect().height);
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         this.$Message.success('提交成功!');
