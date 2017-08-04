@@ -61,7 +61,7 @@
 
 <script type="text/ecmascript-6">
     //import 'common/js/jquery.fullPage'
-    import Navbar from 'components/navbar/navbar-bootstrapvue.vue'
+    import Navbar from 'components/navbar/navbar.vue'
     import rFooter from 'components/footer/footer.vue'
 
     export default {

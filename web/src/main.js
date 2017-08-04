@@ -10,7 +10,7 @@ Vue.use(BootstrapVue)
 // 引用ui组件 iview
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-import 'theme/iview-custom.less'
+import 'theme/iview/custom-rainsgo.less'
 Vue.use(iView)
 
 // 引用App主入口
@@ -34,7 +34,11 @@ import 'default-passive-events/default-passive-events.js'
 
 // import 'animate.css'
 
+// 导入国际化
+import i18n from 'i18n/index.js'
+
 new Vue({
+    i18n,
     el: '#app',
     router,
     store,
