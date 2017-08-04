@@ -6,7 +6,7 @@ Vue.use(VueI18n)
 import en from './lang/en'
 import cn from './lang/cn'
 
-const messages = {
+const langs = {
     en,
     cn
 }
@@ -32,6 +32,5 @@ if (getLanguage() === 'zh-CN') {
 }
 export default new VueI18n({
     locale: loc, // set locale
-    messages // set locale messages
+    messages: langs // set locale messages
 })
-debugger

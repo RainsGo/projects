@@ -1,4 +1,8 @@
 export default {
+    lang: {
+        cn: '中文',
+        en: '英文'
+    },
     navbar: {
         login: '登录'
     },

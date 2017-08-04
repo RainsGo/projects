@@ -41,14 +41,14 @@
         </Button-group>
 
         <div class="r-navbar-right">
-            <Dropdown placement="bottom-start" trigger="click">
+            <Dropdown placement="bottom-start" trigger="click" :on-click="onClickSelectionLanguage">
                 <Button type="text" class="r-navbar-text">
                     {{languageSlected.name}}
                     <Icon type="arrow-down-b"></Icon>
                 </Button>
                 <Dropdown-menu slot="list">
-                    <Dropdown-item v-for="item in languageList" :value="item.name" :key="item.id" :divided="true"
-                                   :selected="languageSlected === item" :on-click="onClickSelectionLanguage(item)">
+                    <Dropdown-item v-for="item in languageList" :name="item.id" :key="item.id" :divided="true"
+                                   :selected="languageSlected === item">
                         {{ item.name }}
                     </Dropdown-item>
                 </Dropdown-menu>
@@ -183,6 +183,7 @@
             },
             onClickSelectionLanguage(lang) {
                 this.language = lang;
+                debugger
             }
         },
         watch: {
