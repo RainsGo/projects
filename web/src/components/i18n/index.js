@@ -26,7 +26,7 @@ let loc
 
 // 判断用户使用的语言
 if (getLanguage() === 'zh-CN') {
-    loc = 'cn'
+    loc = 'zhCN'
 } else {
     loc = 'en'
 }

@@ -51,9 +51,9 @@
     }
 
     .content {
-        min-height: 100%; /* 等于footer的高度 */
+        min-height: 100%;
         min-width: 100%;
-        margin: 0px 0px -50px 0px;
+        margin: 0px 0px -50px 0px; /* 等于footer的高度 */
         padding-top: 80px;
         background-image: url(common/images/bg1.jpg);
     }

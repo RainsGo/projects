@@ -35,7 +35,7 @@ import 'default-passive-events/default-passive-events.js'
 // import 'animate.css'
 
 // 导入国际化
-import i18n from 'i18n/index.js'
+import i18n from 'components/i18n/index.js'
 
 new Vue({
     i18n,

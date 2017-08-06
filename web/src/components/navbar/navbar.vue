@@ -41,15 +41,15 @@
         </Button-group>
 
         <div class="r-navbar-right">
-            <Dropdown placement="bottom-start" trigger="click" :on-click="onClickSelectionLanguage">
+            <Dropdown placement="bottom-start" trigger="hover" @on-click="switchLang">
                 <Button type="text" class="r-navbar-text">
-                    {{languageSlected.name}}
+                    {{getLangCurrent}}
                     <Icon type="arrow-down-b"></Icon>
                 </Button>
                 <Dropdown-menu slot="list">
-                    <Dropdown-item v-for="item in languageList" :name="item.id" :key="item.id" :divided="true"
-                                   :selected="languageSlected === item">
-                        {{ item.name }}
+                    <Dropdown-item class="r-dropdown-items" v-for="item in languageList" :name="item.id" :key="item.id" :divided="true"
+                                   :selected="lang.id === item.id">
+                        {{ $t(item.name) }}
                     </Dropdown-item>
                 </Dropdown-menu>
             </Dropdown>
@@ -143,6 +143,10 @@
     .r-navbar-items-right-move {
         margin-left: 50px;
     }
+
+    .r-dropdown-items{
+        color: black;
+    }
 </style>
 
 <script>
@@ -158,17 +162,17 @@
             return {
                 isMouseOver: false,
                 isPageHome: false,
-                languageSlected: "",
-                languageList: [
-                    {
-                        id: 'chinese',
-                        name: '中文'
+                lang: {},
+                languageList: {
+                    cn: {
+                        id: 'cn',
+                        name: "lang.cn"
                     },
-                    {
-                        id: 'english',
-                        name: '英文'
-                    },
-                ]
+                    en: {
+                        id: 'en',
+                        name: "lang.en"
+                    }
+                }
             }
         },
         components: {},
@@ -181,9 +185,16 @@
                 //console.log("[navbar] onMouseOut: ", this.isOnMouse)
                 this.isMouseOver = false;
             },
-            onClickSelectionLanguage(lang) {
-                this.language = lang;
-                debugger
+            switchLang(id) {
+                if(id === 'cn'){
+                    this.$i18n.locale = 'cn';
+                    this.lang = this.languageList.cn;
+                    localStorage.setItem('language', 'cn');
+                }else{
+                    this.$i18n.locale = 'en';
+                    this.lang = this.languageList.en;
+                    localStorage.setItem('language', 'en')
+                }
             }
         },
         watch: {
@@ -194,11 +205,11 @@
                 } else {
                     this.isPageHome = false;
                 }
-            },
+            }
         },
         computed: {
-            getLanguageName() {
-                return this.languageSlected.name;
+            getLangCurrent() {
+                return this.$t(this.lang.name);
             }
         },
         beforeCreate() {
@@ -215,7 +226,11 @@
             }
         },
         mounted() {
-            this.languageSlected = this.languageList[0];
+            let localLang = localStorage. getItem('language');
+            if(localLang){
+                this.$i18n.locale = localLang;
+            }
+            this.lang = this.languageList[this.$i18n.locale];
         },
         beforeUpdate() {
             //console.log('[navbar] beforeUpdate')
