@@ -13,6 +13,10 @@ import 'iview/dist/styles/iview.css'
 import 'theme/iview/custom-rainsgo.less'
 Vue.use(iView)
 
+// 屏幕分辨率适配
+import VueViewports from 'vue-viewports'
+Vue.use(VueViewports, { 420: 'mobile', 768: 'tablet', 1024: 'desktop', 1920: 'hd-desktop', 2560: 'qhd-desktop', 3840: 'uhd-desktop' })
+
 // 引用App主入口
 import App from '@/App.vue'
 

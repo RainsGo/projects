@@ -8,7 +8,8 @@
 
 <style scoped lang="less">
     .r-home {
-        height: 1000px;
+        height: 100%;
+        width: 100%;
         text-align: center;
     }
 </style>

@@ -33,9 +33,11 @@
 
 <style scoped lang="less">
     .r-footer {
+        position: fixed;
+        z-index: 0;
+        bottom: 0;
         width: 100%;
         height: 50px;
-        padding: 13px 0;
         background: rgba(0, 0, 0, 0.8);
     }
 

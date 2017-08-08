@@ -61,7 +61,7 @@
 </template>
 
 <style scoped lang="less">
-    @animateTime: 0.7s;
+    @animateTime: 1s;
 
     .r-navbar {
         position: fixed;

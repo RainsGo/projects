@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <Navbar></Navbar>
+        <rFooter></rFooter>
         <div class="content">
             <keep-alive>
                 <transition name="fade" mode="out-in">
@@ -13,7 +14,6 @@
                 </transition>
             </keep-alive>
         </div>
-        <rFooter></rFooter>
         <!--
         <div id="background">
         <div class="section " id="section1"><h1>2 Page</h1></div>
@@ -30,7 +30,7 @@
 </template>
 
 <style scoped lang="less">
-    @animateTime: 0.5s;
+    @animateTime: 1s;
     /*
     @import "../common/css/index.css";
     @import "../common/css/jquery.fullPage.css";
@@ -55,7 +55,7 @@
         min-width: 100%;
         margin: 0px 0px -50px 0px; /* 等于footer的高度 */
         padding-top: 80px;
-        background-image: url(common/images/bg1.jpg);
+        //background-image: url(common/images/bg1.jpg);
     }
 </style>
 

@@ -1,8 +1,6 @@
 <template>
     <div class="r-home">
-        <h1>page4</h1>
-        <router-link to="/">home</router-link>
-        <router-view></router-view>
+        <h1>Taisheng Art</h1>
     </div>
 </template>
 
@@ -13,3 +11,9 @@
         text-align: center;
     }
 </style>
+
+<script type="text/ecmascript-6">
+    export default {
+        name: "taisheng"
+    }
+</script>

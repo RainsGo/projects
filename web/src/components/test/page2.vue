@@ -8,7 +8,11 @@
 
 <style scoped lang="less">
     .r-home {
-        height: 1000px;
+        position: absolute;
+        height: 100%;
+        width: 100%;
         text-align: center;
+        background-image: url(../../common/images/bg4.jpg);
+        background-size: 100% 100%;
     }
 </style>
