@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <Navbar></Navbar>
-        <rFooter></rFooter>
         <div class="content">
             <keep-alive>
                 <transition name="fade" mode="out-in">
@@ -14,6 +13,7 @@
                 </transition>
             </keep-alive>
         </div>
+        <rFooter></rFooter>
         <!--
         <div id="background">
         <div class="section " id="section1"><h1>2 Page</h1></div>
@@ -56,12 +56,13 @@
         margin: 0px 0px -50px 0px; /* 等于footer的高度 */
         padding-top: 80px;
         //background-image: url(common/images/bg1.jpg);
+        background-color: #9ea7b4;
     }
 </style>
 
 <script type="text/ecmascript-6">
     //import 'common/js/jquery.fullPage'
-    import Navbar from 'components/navbar/navbar.vue'
+    import Navbar from 'components/navbar/navbar-ivew.vue'
     import rFooter from 'components/footer/footer.vue'
 
     export default {

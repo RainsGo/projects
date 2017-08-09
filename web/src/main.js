@@ -3,8 +3,13 @@
 // https://trakt.tv/
 import Vue from 'vue'
 
+// 引入动画插件
+import 'animate.css'
+
 // 引用ui组件 bootstrap-vue
 import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 // 引用ui组件 iview
@@ -12,6 +17,16 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'theme/iview/custom-rainsgo.less'
 Vue.use(iView)
+
+// 引入单页滚动插件
+import 'animate.css'
+import VueFullpage from 'vue-fullpage'
+Vue.use(VueFullpage)
+
+// 引入滑动插件
+import 'swiper/dist/css/swiper.css'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 
 // 屏幕分辨率适配
 import VueViewports from 'vue-viewports'

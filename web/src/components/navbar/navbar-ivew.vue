@@ -4,7 +4,9 @@
          v-on:mouseout="onMouseOut($event)"
          v-bind:class="{'r-navbar-on-mouse-over': isMouseOver, 'r-navbar-not-page-home': !isPageHome}"
     >
-        <transition name="logo-fade">
+        <transition name="logo-inout"
+                    enter-active-class="animated bounceInDown"
+                    leave-active-class="animated bounceOutUp">
             <router-link class="r-navbar-logo" v-if="!isPageHome" to="/">
                 <img width="65px" src="../../common/images/logo-r.svg"></img>
             </router-link>

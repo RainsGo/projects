@@ -11,51 +11,49 @@
             </b-link>
         </transition>
 
+        <b-button class="r-navbar-left" variant="link" to="/">
+            <i class=" fa fa-search"></i>
+        </b-button>
 
-        <b-nav class="r-navbar-left">
-            <b-nav-item>
-                <i class=" fa fa-search"></i>
-            </b-nav-item>
-        </b-nav>
+        <b-button-group class="r-navbar-items r-navbar-items-left"
+                        v-bind:class="{'r-navbar-items-left-move': !isPageHome}">
+            <b-button variant="link" to="/page1">Page1</b-button>
+            <b-button variant="link" to="/page2">Page2</b-button>
+            <b-button variant="link" to="/page3">Page3</b-button>
+        </b-button-group>
 
-        <b-nav class="r-navbar-right">
-            <b-nav-item to="/register">加入</b-nav-item>
-            <b-nav-item to="/login">登陆</b-nav-item>
-        </b-nav>
 
-        <b-nav is-nav class="r-navbar-items r-navbar-items-left"
-               v-bind:class="{'r-navbar-items-left-move': !isPageHome}">
-            <b-nav-item class="r-link" to="/page1">Page1</b-nav-item>
-            <b-nav-item to="/page2">Page2</b-nav-item>
-            <b-nav-item to="/page3">Page3</b-nav-item>
-        </b-nav>
+        <b-button-group class="r-navbar-items r-navbar-items-right"
+                        v-bind:class="{'r-navbar-items-right-move': !isPageHome}">
+            <b-button variant="link" to="/page4">Page4</b-button>
+            <b-button variant="link" to="/page5">Page5</b-button>
+            <b-button variant="link" to="/page6">Page6</b-button>
+        </b-button-group>
 
-        <b-nav is-nav class="r-navbar-items r-navbar-items-right"
-               v-bind:class="{'r-navbar-items-right-move': !isPageHome}">
-            <b-nav-item to="/page4">Page4</b-nav-item>
-            <b-nav-item to="/page5">Page5</b-nav-item>
-            <b-nav-item to="/page6">Page6</b-nav-item>
-        </b-nav>
+        <div class="r-navbar-right">
+            <b-dropdown v-bind:text=getLangCurrent variant="link">
+                <b-dropdown-item class="r-dropdown-items" v-for="item in languageList" key="item.id"
+                                 active="lang.id === item.id" @click="switchLang(item.id)">
+                    {{ $t(item.name) }}
+                </b-dropdown-item>
+            </b-dropdown>
+            <b-button variant="link" to="/login">{{$t('navbar.login')}}</b-button>
+        </div>
     </div>
 </template>
 
 <style scoped lang="less">
-    @animateTime: 0.7s;
-
-    .r-link.a{
-        color: white !important;
-    }
+    @animateTime: 1s;
 
     .r-navbar {
+        position: fixed;
         top: 0;
         width: 100%;
-        border: 1px solid transparent;
-        z-index: 1000;
         height: 50px;
         min-height: 50px;
-        margin-bottom: 20px;
-        position: fixed;
-        color: white;
+        border: 1px solid transparent;
+        z-index: 100;
+        padding: 10px;
         background: rgba(0, 0, 0, 0);
         transition: background @animateTime;
         -moz-transition: background @animateTime;
@@ -97,28 +95,15 @@
     }
 
     .r-navbar-left {
-        position: relative;
         float: left !important;
-        font-size: 14px;
-        padding: 0;
-        margin: 7px 0px 0px 0px;
     }
 
     .r-navbar-right {
-        position: relative;
         float: right !important;
-        font-size: 14px;
-        font-weight: bold;
-        padding: 0;
-        margin: 7px 0px 0px 0px;
     }
 
     .r-navbar-items {
         position: absolute;
-        font-size: 14px;
-        color: white;
-        padding: 0;
-        margin: 7px 0px 0px 0px;
         transition: margin-right @animateTime, margin-left @animateTime;
         -moz-transition: margin-right @animateTime, margin-left @animateTime;
         -webkit-transition: margin-right @animateTime, margin-left @animateTime;
@@ -141,9 +126,8 @@
         margin-left: 50px;
     }
 
-    .btn-secondary {
-        background-color: transparent;
-        border-color: transparent;
+    .r-dropdown-items{
+        color: black;
     }
 </style>
 
@@ -160,6 +144,17 @@
             return {
                 isMouseOver: false,
                 isPageHome: false,
+                lang: {},
+                languageList: {
+                    cn: {
+                        id: 'cn',
+                        name: "lang.cn"
+                    },
+                    en: {
+                        id: 'en',
+                        name: "lang.en"
+                    }
+                }
             }
         },
         components: {},
@@ -172,6 +167,18 @@
                 //console.log("[navbar] onMouseOut: ", this.isOnMouse)
                 this.isMouseOver = false;
             },
+            switchLang(id) {
+                debugger
+                if(id === 'cn'){
+                    this.$i18n.locale = 'cn';
+                    this.lang = this.languageList.cn;
+                    localStorage.setItem('language', 'cn');
+                }else{
+                    this.$i18n.locale = 'en';
+                    this.lang = this.languageList.en;
+                    localStorage.setItem('language', 'en')
+                }
+            }
         },
         watch: {
             $route: function () {
@@ -181,15 +188,17 @@
                 } else {
                     this.isPageHome = false;
                 }
-            },
+            }
         },
-        computed: {},
+        computed: {
+            getLangCurrent() {
+                return this.$t(this.lang.name);
+            }
+        },
         beforeCreate() {
             //console.log('[navbar] beforeCreate')
         },
-        created: function () {
-            //console.log('[navbar] created')
-            //this.navbarBgColor = Object.assign({}, this.color)
+        created() {
         },
         beforeMount() {
             //console.log('[navbar] beforeMount')
@@ -200,7 +209,11 @@
             }
         },
         mounted() {
-            //console.log('[navbar] mounted')
+            let localLang = localStorage. getItem('language');
+            if(localLang){
+                this.$i18n.locale = localLang;
+            }
+            this.lang = this.languageList[this.$i18n.locale];
         },
         beforeUpdate() {
             //console.log('[navbar] beforeUpdate')

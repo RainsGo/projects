@@ -1,6 +1,6 @@
 <template>
     <div id="login" class="r-login">
-        <div id="login_frame" ref="abc">
+        <div id="login_frame" ref="abc" v-animate="{value: 'bounceInDown'}">
             <div id="login_content">
                 <h2 class="login_title">RainsGo</h2>
                 <Form class="form" ref="formData" :model="formData" :rules="ruleData">

@@ -7,13 +7,14 @@ Vue.use(VueRouter)
 import Register from 'components/auth/register.vue'
 import Login from 'components/auth/login.vue'
 import Reset from 'components/auth/reset.vue'
-import Home from 'components/test/home.vue'
+import Home from 'components/pages/index2.vue'
 import Page1 from 'components/test/page1.vue'
 import Page2 from 'components/test/page2.vue'
 import Page3 from 'components/test/page3.vue'
 import Page4 from 'components/test/page4.vue'
 import Page5 from 'components/test/page5.vue'
 import Page6 from 'components/test/page6.vue'
+import Test from 'components/test/home.vue'
 import NotFound from 'components/error/notFound.vue'
 
 // 配置路由
@@ -23,6 +24,11 @@ export default new VueRouter({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: Test
         },
         {
             path: '/register',
