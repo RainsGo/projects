@@ -1,41 +1,45 @@
 <template>
     <div id="login" class="r-login">
-        <div id="login_frame" ref="abc" v-animate="{value: 'bounceInDown'}">
-            <div id="login_content">
-                <h2 class="login_title">RainsGo</h2>
-                <Form class="form" ref="formData" :model="formData" :rules="ruleData">
-                    <Form-item prop="username">
-                        <Input type="text" class="form_items" size="large" v-model="formData.username"
-                               placeholder="Username Or Email Or Phone Number">
-                        <i class="fa fa-user fa-size form_items_icon" slot="prepend"></i>
-                        </Input>
-                    </Form-item>
+        <transition name="login-frame-inout"
+                    enter-active-class="animated bounceInDown"
+                    leave-active-class="animated bounceOutUp">
+            <div id="login_frame" ref="abc" v-if="isMounted">
+                <div id="login_content">
+                    <h2 class="login_title">RainsGo</h2>
+                    <Form class="form" ref="formData" :model="formData" :rules="ruleData">
+                        <Form-item prop="username">
+                            <Input type="text" class="form_items" size="large" v-model="formData.username"
+                                   placeholder="Username Or Email Or Phone Number">
+                            <i class="fa fa-user fa-size form_items_icon" slot="prepend"></i>
+                            </Input>
+                        </Form-item>
 
-                    <Form-item prop="password">
-                        <Input type="password" class="form_items" size="large" v-model="formData.password"
-                               placeholder="Password">
-                        <i class="fa fa-key fa-size form_items_icon" slot="prepend"></i>
-                        </Input>
-                    </Form-item>
+                        <Form-item prop="password">
+                            <Input type="password" class="form_items" size="large" v-model="formData.password"
+                                   placeholder="Password">
+                            <i class="fa fa-key fa-size form_items_icon" slot="prepend"></i>
+                            </Input>
+                        </Form-item>
 
-                    <div class="forget">
-                        <router-link to="/reset">
-                            <Button type="text">忘记密码?</Button>
-                        </router-link>
-                    </div>
-                    <Form-item>
-                        <Button type="primary" size="large" class="form_items" @click="handleSubmit('formData')">登 录
-                        </Button>
-                    </Form-item>
-                </Form>
+                        <div class="forget">
+                            <router-link to="/reset">
+                                <Button type="text">忘记密码?</Button>
+                            </router-link>
+                        </div>
+                        <Form-item>
+                            <Button type="primary" size="large" class="form_items" @click="handleSubmit('formData')">登 录
+                            </Button>
+                        </Form-item>
+                    </Form>
+                </div>
+                <div class="login_bottom">
+                    新来的?
+                    <router-link to="/register">
+                        <Button type="text">来注册,加入我们吧!</Button>
+                    </router-link>
+                </div>
             </div>
-            <div class="login_bottom">
-                新来的?
-                <router-link to="/register">
-                    <Button type="text">来注册,加入我们吧!</Button>
-                </router-link>
-            </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -134,6 +138,7 @@
                 }
             };
             return {
+                isMounted: false,
                 formData: {
                     username: '',
                     password: ''
@@ -147,6 +152,9 @@
                     ]
                 }
             }
+        },
+        mounted() {
+            this.isMounted = true;
         },
         methods: {
             handleSubmit(name) {
