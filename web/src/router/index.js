@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 import Register from 'components/auth/register.vue'
 import Login from 'components/auth/login.vue'
 import Reset from 'components/auth/reset.vue'
-import Home from 'components/pages/index2.vue'
+import Home from 'components/pages/index.vue'
 import Page1 from 'components/test/page1.vue'
 import Page2 from 'components/test/page2.vue'
 import Page3 from 'components/test/page3.vue'
